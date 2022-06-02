@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on GO course</title>
-    <link>http://example.org/docs/</link>
+    <link>https://ribgsilva.github.io/docs/</link>
     <description>Recent content in Docs on GO course</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/docs/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://ribgsilva.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Quickstart</title>
-      <link>http://example.org/go-course/quickstart/</link>
+      <link>https://ribgsilva.github.io/go-course/quickstart/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/quickstart/</guid>
+      <guid>https://ribgsilva.github.io/go-course/quickstart/</guid>
       <description>Quickstart #  Installation #  To install Go, just follow the documentation in the official web page
 Is really simple to install.
 Version Manager #  I personally like to use a version manager to easily change versions working cross projets.
@@ -21,10 +21,10 @@ Private Repository #  If you want to use some private repository (and probably y
     
     <item>
       <title>Hello world</title>
-      <link>http://example.org/go-course/hello-world/</link>
+      <link>https://ribgsilva.github.io/go-course/hello-world/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/hello-world/</guid>
+      <guid>https://ribgsilva.github.io/go-course/hello-world/</guid>
       <description>Hello world #  First Project #  Let&amp;rsquo;s create the first project.
 Create a folder to use as project folder.
 mkdir helloworld; cd helloworld  Then create your first file main.go and type the following code:
@@ -35,20 +35,20 @@ package #  The first line of code is the package name.</description>
     
     <item>
       <title>Basics</title>
-      <link>http://example.org/go-course/basics/</link>
+      <link>https://ribgsilva.github.io/go-course/basics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/basics/</guid>
+      <guid>https://ribgsilva.github.io/go-course/basics/</guid>
       <description>Basics #  So let&amp;rsquo;s create a basic addition code.
 package main import &amp;#34;fmt&amp;#34; func addInt(x int, y int) int { return x + y } func printResult(result string) { fmt.Println(result) } func main() { a := 5 b := 3 sum := addInt(a, b) messageResult := fmt.Sprintf(&amp;#34;the sum of %d and %d is %d&amp;#34;, a, b, sum) printResult(messageResult) } Functions #  Here we created our first function. It is composed by 3 main points:</description>
     </item>
     
     <item>
       <title>JSON</title>
-      <link>http://example.org/go-course/json/</link>
+      <link>https://ribgsilva.github.io/go-course/json/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/json/</guid>
+      <guid>https://ribgsilva.github.io/go-course/json/</guid>
       <description>JSON #  Work With Json #  To handle json, go has a native librabry for that.
 encoding/json  It is really easy to use it.
 Check the example below.
@@ -57,10 +57,10 @@ package main import ( &amp;#34;encoding/json&amp;#34; &amp;#34;fmt&amp;#34; ) co
     
     <item>
       <title>Gin Gonic</title>
-      <link>http://example.org/go-course/gin-gonic/</link>
+      <link>https://ribgsilva.github.io/go-course/gin-gonic/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/gin-gonic/</guid>
+      <guid>https://ribgsilva.github.io/go-course/gin-gonic/</guid>
       <description>Gin Gonic #  Http server with Gin Gonic #  Go has a native library to handle http requests.
 net/http  I personally like to use the Gin Gonic and that is what I will use here.
 package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/gin-gonic/gin&amp;#34; &amp;#34;net/http&amp;#34; ) type user struct { Name string `json:&amp;#34;name&amp;#34;` } func main() { engine := gin.Default() engine.Handle(http.MethodPost, &amp;#34;/user&amp;#34;, createUser) engine.Handle(http.MethodGet, &amp;#34;/user&amp;#34;, getUser) if err := engine.Run(&amp;#34;:8080&amp;#34;); err !</description>
@@ -68,10 +68,10 @@ package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/gin-gonic/gin&am
     
     <item>
       <title>Database</title>
-      <link>http://example.org/go-course/database/</link>
+      <link>https://ribgsilva.github.io/go-course/database/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/database/</guid>
+      <guid>https://ribgsilva.github.io/go-course/database/</guid>
       <description>Database #  Packages #  You can access database throught the sql package:
 database/sql  But there are a lot of different libs with more features like:
 https://github.com/jmoiron/sqlx https://github.com/go-gorm/gorm https://github.com/rocketlaunchr/dbq  Here I will teach the native lib.
@@ -81,10 +81,10 @@ import ( &amp;#34;database/sql&amp;#34; _ &amp;#34;github.com/go-sql-driver/mysq
     
     <item>
       <title>Goroutines</title>
-      <link>http://example.org/go-course/goroutines/</link>
+      <link>https://ribgsilva.github.io/go-course/goroutines/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/go-course/goroutines/</guid>
+      <guid>https://ribgsilva.github.io/go-course/goroutines/</guid>
       <description>Goroutines #  Go routines are process that runs in parallel, as threads.
 First, we need one method to be executed in paralel.
 func count(n int) { for i := 0; i &amp;lt; n; i++ { fmt.Printf(&amp;#34;current value %d \r\n&amp;#34;, i) time.Sleep(500 * time.Millisecond) } } In our main method, we can call it.

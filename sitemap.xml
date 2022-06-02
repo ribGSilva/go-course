@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/go-course/quickstart/</loc>
+    <loc>https://ribgsilva.github.io/go-course/quickstart/</loc>
   </url><url>
-    <loc>http://example.org/go-course/hello-world/</loc>
+    <loc>https://ribgsilva.github.io/go-course/hello-world/</loc>
   </url><url>
-    <loc>http://example.org/go-course/basics/</loc>
+    <loc>https://ribgsilva.github.io/go-course/basics/</loc>
   </url><url>
-    <loc>http://example.org/go-course/json/</loc>
+    <loc>https://ribgsilva.github.io/go-course/json/</loc>
   </url><url>
-    <loc>http://example.org/go-course/gin-gonic/</loc>
+    <loc>https://ribgsilva.github.io/go-course/gin-gonic/</loc>
   </url><url>
-    <loc>http://example.org/go-course/database/</loc>
+    <loc>https://ribgsilva.github.io/go-course/database/</loc>
   </url><url>
-    <loc>http://example.org/go-course/goroutines/</loc>
+    <loc>https://ribgsilva.github.io/go-course/goroutines/</loc>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://ribgsilva.github.io/categories/</loc>
   </url><url>
-    <loc>http://example.org/docs/</loc>
+    <loc>https://ribgsilva.github.io/docs/</loc>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://ribgsilva.github.io/tags/</loc>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>https://ribgsilva.github.io/</loc>
   </url>
 </urlset>
