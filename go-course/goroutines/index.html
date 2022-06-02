@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Goroutines #  Go routines are process that runs in parallel, as threads.
+First, we need one method to be executed in paralel.
+func count(n int) { for i := 0; i &lt; n; i&#43;&#43; { fmt.Printf(&#34;current value %d \r\n&#34;, i) time.Sleep(500 * time.Millisecond) } } In our main method, we can call it.
+func main() { n := 5 count(n) println(&#34;end&#34;) } We expect this result:
+current value 0 current value 1 current value 2 current value 3 current value 4 end Exiting.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Goroutines" />
+<meta property="og:description" content="Goroutines #  Go routines are process that runs in parallel, as threads.
+First, we need one method to be executed in paralel.
+func count(n int) { for i := 0; i &lt; n; i&#43;&#43; { fmt.Printf(&#34;current value %d \r\n&#34;, i) time.Sleep(500 * time.Millisecond) } } In our main method, we can call it.
+func main() { n := 5 count(n) println(&#34;end&#34;) } We expect this result:
+current value 0 current value 1 current value 2 current value 3 current value 4 end Exiting." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/go-course/goroutines/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Goroutines | GO course</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css" integrity="sha256-gsXb0jRHzuC0wqo&#43;0Izglh&#43;qQOH6Nw7uT4yfAuDUa18=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ca6d6280f26e57be9b01d11a935a30e8ec4ce6d85490963f06200c9c4668e375.js" integrity="sha256-ym1igPJuV76bAdEak1ow6OxM5thUkJY/BiAMnEZo43U=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>GO course</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/quickstart/" class="">Quickstart</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/hello-world/" class="">Hello world</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/basics/" class="">Basics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/json/" class="">JSON</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/gin-gonic/" class="">Gin Gonic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/database/" class="">Database</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/goroutines/" class=" active">Goroutines</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Goroutines</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#start-a-goroutine">Start a goroutine</a></li>
+    <li><a href="#syncronizing-executions">Syncronizing executions</a></li>
+    <li><a href="#trafic-data-between-goroutines">Trafic data between goroutines</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="goroutines">
+  Goroutines
+  <a class="anchor" href="#goroutines">#</a>
+</h1>
+<p>Go routines are process that runs in parallel, as threads.</p>
+<p>First, we need one method to be executed in paralel.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">count</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;current value %d \r\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+		<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+	}
+}
+</code></pre></div><p>In our main method, we can call it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+	<span style="color:#a6e22e">count</span>(<span style="color:#a6e22e">n</span>)
+	println(<span style="color:#e6db74">&#34;end&#34;</span>)
+}
+</code></pre></div><p>We expect this result:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">current value <span style="color:#ae81ff">0</span> 
+current value <span style="color:#ae81ff">1</span> 
+current value <span style="color:#ae81ff">2</span> 
+current value <span style="color:#ae81ff">3</span> 
+current value <span style="color:#ae81ff">4</span> 
+end
+Exiting.
+</code></pre></div><h2 id="start-a-goroutine">
+  Start a goroutine
+  <a class="anchor" href="#start-a-goroutine">#</a>
+</h2>
+<p>To start this execution in a separated process, we just add a &ldquo;go&rdquo; before the method</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+	<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">count</span>(<span style="color:#a6e22e">n</span>)
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	println(<span style="color:#e6db74">&#34;end&#34;</span>)
+}
+</code></pre></div><p>We expect the same result as before:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">current value <span style="color:#ae81ff">0</span> 
+current value <span style="color:#ae81ff">1</span> 
+current value <span style="color:#ae81ff">2</span> 
+current value <span style="color:#ae81ff">3</span> 
+current value <span style="color:#ae81ff">4</span> 
+end
+Exiting.
+</code></pre></div><p>We added a sleep in the main method because the count process is running separated from the main method, and if the main method finishes, if will stop all the process stated by it.</p>
+<h2 id="syncronizing-executions">
+  Syncronizing executions
+  <a class="anchor" href="#syncronizing-executions">#</a>
+</h2>
+<p>We can controll the executions using the lib sync.</p>
+<p>We will use the sync.WaitGroup.</p>
+<p>The wait group works as a counter, we can increase and decrease the counter, and when it blocks the current proccess until that counter cames to zero.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+	<span style="color:#a6e22e">wg</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>)
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>) <span style="color:#75715e">// add to the counter
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>() <span style="color:#75715e">// ensure that when the count method finishes, it will decrease the counter
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">count</span>(<span style="color:#a6e22e">n</span>)
+	}()
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>() <span style="color:#75715e">// wait until the counter cames to zero.
+</span><span style="color:#75715e"></span>	println(<span style="color:#e6db74">&#34;end&#34;</span>)
+}
+</code></pre></div><h2 id="trafic-data-between-goroutines">
+  Trafic data between goroutines
+  <a class="anchor" href="#trafic-data-between-goroutines">#</a>
+</h2>
+<p>We can usually trafic data between goroutines using channels.</p>
+<p>Follow the example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;sync&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">1</span>)
+
+	<span style="color:#a6e22e">wg</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>)
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">2</span>)
+	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+		<span style="color:#a6e22e">consumer</span>(<span style="color:#a6e22e">c</span>)
+	}()
+	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
+		<span style="color:#a6e22e">producer</span>(<span style="color:#a6e22e">n</span>, <span style="color:#a6e22e">c</span>)
+	}()
+
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+	println(<span style="color:#e6db74">&#34;end&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">producer</span>(<span style="color:#a6e22e">n</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">c</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">n</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span>
+		<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>)
+	}
+	close(<span style="color:#a6e22e">c</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">consumer</span>(<span style="color:#a6e22e">c</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">for</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>; <span style="color:#a6e22e">ok</span> {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;current value %d \r\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+		} <span style="color:#66d9ef">else</span> {
+			<span style="color:#66d9ef">break</span>
+		}
+	}
+}
+
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#start-a-goroutine">Start a goroutine</a></li>
+    <li><a href="#syncronizing-executions">Syncronizing executions</a></li>
+    <li><a href="#trafic-data-between-goroutines">Trafic data between goroutines</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
