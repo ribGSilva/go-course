@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Basics #  So let&rsquo;s create a basic addition code.
+package main import &#34;fmt&#34; func addInt(x int, y int) int { return x &#43; y } func printResult(result string) { fmt.Println(result) } func main() { a := 5 b := 3 sum := addInt(a, b) messageResult := fmt.Sprintf(&#34;the sum of %d and %d is %d&#34;, a, b, sum) printResult(messageResult) } Functions #  Here we created our first function. It is composed by 3 main points:">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Basics" />
+<meta property="og:description" content="Basics #  So let&rsquo;s create a basic addition code.
+package main import &#34;fmt&#34; func addInt(x int, y int) int { return x &#43; y } func printResult(result string) { fmt.Println(result) } func main() { a := 5 b := 3 sum := addInt(a, b) messageResult := fmt.Sprintf(&#34;the sum of %d and %d is %d&#34;, a, b, sum) printResult(messageResult) } Functions #  Here we created our first function. It is composed by 3 main points:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/go-course/basics/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Basics | GO course</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css" integrity="sha256-gsXb0jRHzuC0wqo&#43;0Izglh&#43;qQOH6Nw7uT4yfAuDUa18=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ca6d6280f26e57be9b01d11a935a30e8ec4ce6d85490963f06200c9c4668e375.js" integrity="sha256-ym1igPJuV76bAdEak1ow6OxM5thUkJY/BiAMnEZo43U=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>GO course</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/quickstart/" class="">Quickstart</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/hello-world/" class="">Hello world</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/basics/" class=" active">Basics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/json/" class="">JSON</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/gin-gonic/" class="">Gin Gonic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/database/" class="">Database</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/goroutines/" class="">Goroutines</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Basics</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#functions">Functions</a>
+      <ul>
+        <li><a href="#function-name">Function Name</a></li>
+        <li><a href="#function-params">Function Params</a></li>
+        <li><a href="#function-returns">Function Returns</a></li>
+      </ul>
+    </li>
+    <li><a href="#variable-initialization">Variable Initialization</a></li>
+    <li><a href="#basic-types">Basic Types</a></li>
+    <li><a href="#constants">Constants</a></li>
+    <li><a href="#switch-case">Switch Case</a></li>
+    <li><a href="#arraysslice">Arrays/Slice</a>
+      <ul>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#manipulate">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#map">Map</a>
+      <ul>
+        <li><a href="#create-1">Create</a></li>
+        <li><a href="#manipulate-1">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#channel">Channel</a>
+      <ul>
+        <li><a href="#create-2">Create</a></li>
+        <li><a href="#manipulate-2">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#loops">Loops</a>
+      <ul>
+        <li><a href="#indexed">Indexed</a></li>
+        <li><a href="#infinite">Infinite</a></li>
+        <li><a href="#iteration">Iteration</a></li>
+      </ul>
+    </li>
+    <li><a href="#embedded-functions">Embedded functions</a>
+      <ul>
+        <li><a href="#print">print</a></li>
+        <li><a href="#make">make</a></li>
+        <li><a href="#len">len</a></li>
+        <li><a href="#cap">cap</a></li>
+        <li><a href="#append">append</a></li>
+        <li><a href="#defer">defer</a></li>
+        <li><a href="#new">new</a></li>
+        <li><a href="#close">close</a></li>
+        <li><a href="#others">others</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="basics">
+  Basics
+  <a class="anchor" href="#basics">#</a>
+</h1>
+<p>So let&rsquo;s create a basic addition code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addInt</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printResult</span>(<span style="color:#a6e22e">result</span> <span style="color:#66d9ef">string</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">result</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">3</span>
+
+    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">addInt</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>)
+    <span style="color:#a6e22e">messageResult</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;the sum of %d and %d is %d&#34;</span>, <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">sum</span>)
+
+    <span style="color:#a6e22e">printResult</span>(<span style="color:#a6e22e">messageResult</span>)
+}
+</code></pre></div><h2 id="functions">
+  Functions
+  <a class="anchor" href="#functions">#</a>
+</h2>
+<p>Here we created our first function. It is composed by 3 main points:</p>
+<h3 id="function-name">
+  Function Name
+  <a class="anchor" href="#function-name">#</a>
+</h3>
+<p>Its name:</p>
+<pre><code>addInt
+</code></pre>
+<h3 id="function-params">
+  Function Params
+  <a class="anchor" href="#function-params">#</a>
+</h3>
+<p>Its params:</p>
+<pre><code>(x int, y int)
+</code></pre>
+<p>The params must always be between parentheses, and for params of same type, we can omit type of all but the last param.</p>
+<p>Like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">exemple</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">z</span>
+}
+</code></pre></div><p>And we can blend types</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addPrint</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">z</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">messageFormat</span> <span style="color:#66d9ef">string</span>) {
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#a6e22e">messageFormat</span>, <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">z</span>)
+}
+</code></pre></div><h3 id="function-returns">
+  Function Returns
+  <a class="anchor" href="#function-returns">#</a>
+</h3>
+<p>Its return:</p>
+<pre><code>int
+</code></pre>
+<p>If the function returns something, we need to use &ldquo;:&rdquo; and put the type of return.</p>
+<p>We can return more then one value, but we need to put it between parentheses.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">example</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">messageFormat</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">string</span>) {
+    <span style="color:#a6e22e">sum</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>
+    <span style="color:#a6e22e">messageFormatted</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">messageFormat</span>, <span style="color:#a6e22e">sum</span>)
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sum</span>, <span style="color:#a6e22e">messageFormatted</span>
+}
+</code></pre></div><p>We can also define names for the results and assign them in the code, but if we do it for one return value, we need to put in all of them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">example</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">yint</span>, <span style="color:#a6e22e">messageFormat</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">sum</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">messageFormatted</span> <span style="color:#66d9ef">string</span>) {
+    <span style="color:#a6e22e">sum</span> = <span style="color:#a6e22e">x</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">y</span>
+    <span style="color:#a6e22e">messageFormatted</span> = <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#a6e22e">messageFormat</span>, <span style="color:#a6e22e">sum</span>)
+    <span style="color:#66d9ef">return</span>
+}
+</code></pre></div><p>The difference is that you don&rsquo;t need to init the variables of return, they are already initialized, and you don&rsquo;t need to pass them in the return statement.</p>
+<h2 id="variable-initialization">
+  Variable Initialization
+  <a class="anchor" href="#variable-initialization">#</a>
+</h2>
+<p>Talking about variable initialization, we have some different ways.</p>
+<p>We can use <strong>var</strong> to init variables.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">var1</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">var2</span>, <span style="color:#a6e22e">var3</span> <span style="color:#66d9ef">int</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">var4</span>, <span style="color:#a6e22e">var5</span> = <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">5</span>
+
+    <span style="color:#a6e22e">var3</span> = <span style="color:#ae81ff">4</span>
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var1</span>) <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var2</span>) <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var3</span>) <span style="color:#75715e">// 4
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var4</span>) <span style="color:#75715e">// 9
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var5</span>) <span style="color:#75715e">// 5
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>As we can see, if we don&rsquo;t pass any value, the var will be stated with default/empty value.</p>
+<p>We can also init variables with already with values not using <strong>var</strong>. We can use <strong>:=</strong> , but in this case, we can&rsquo;t init the variable with no value assigned.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+    <span style="color:#a6e22e">var1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">3</span>
+    <span style="color:#a6e22e">var2</span>, <span style="color:#a6e22e">var3</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var1</span>) <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var2</span>) <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var3</span>) <span style="color:#75715e">// 4
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>If some variable is already created and you want to assign other value to it and create  a new variable at the same time, you need to use the <strong>:=</strong> notation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+    <span style="color:#a6e22e">var1</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">3</span>
+
+    <span style="color:#a6e22e">var1</span>, <span style="color:#a6e22e">var2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">functionWithTwoReturns</span>()
+
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var1</span>)
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">var2</span>)
+}
+</code></pre></div><h2 id="basic-types">
+  Basic Types
+  <a class="anchor" href="#basic-types">#</a>
+</h2>
+<p>We have a lot of types to use:</p>
+<pre><code>bool // empty value is &quot;false&quot;
+
+string // empty value is &quot;&quot;
+
+int  int8  int16  int32  int64
+uint uint8 uint16 uint32 uint64 uintptr
+    // empty value is 0
+
+byte // alias for uint8 
+    // empty value is 0
+
+rune // alias for int32 
+    // represents a Unicode code point
+    // empty value is 0
+
+float32 float64
+    // empty value is 0
+
+complex64 complex128
+    // empty value is 0
+</code></pre>
+<p>You can convert types just by typing <strong>T(v)</strong>:</p>
+<pre><code>i := 123
+f := float64(i)
+u := uint(f)
+</code></pre>
+<p>There is also a blank identifier, _</p>
+<p>Is used to ignore one paramer</p>
+<pre><code>var1, _ := functionWithTwoReturns()
+</code></pre>
+<h2 id="constants">
+  Constants
+  <a class="anchor" href="#constants">#</a>
+</h2>
+<p>The notation of constants simple:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">zero</span> = <span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">one</span> = <span style="color:#ae81ff">1</span>
+
+<span style="color:#66d9ef">const</span> (
+    <span style="color:#a6e22e">ten</span> = <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">pi</span> = <span style="color:#ae81ff">3.14</span>
+)
+
+</code></pre></div><p>There is no need to use := to init the value.</p>
+<h2 id="switch-case">
+  Switch Case
+  <a class="anchor" href="#switch-case">#</a>
+</h2>
+<p>The switch case follows that model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;key&#34;</span>
+	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">s</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;key&#34;</span>:
+		println(<span style="color:#e6db74">&#34;value is key&#34;</span>)
+	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;wallet&#34;</span>:
+		println(<span style="color:#e6db74">&#34;value is wallet&#34;</span>)
+		<span style="color:#66d9ef">fallthrough</span> <span style="color:#75715e">// thill will call the case below
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;money&#34;</span>:
+		println(<span style="color:#e6db74">&#34;value is money&#34;</span>)
+	<span style="color:#66d9ef">default</span>:
+		println(<span style="color:#e6db74">&#34;unmapped value&#34;</span>)
+	}
+}
+</code></pre></div><p>If the expressions fits some case, it will execute and quit the switch.</p>
+<p>You can execute thecase and the case below using the command fallthrough.</p>
+<p>If the value does not fit any case, it will execute the default case.</p>
+<p>If there is no default case, it will do nothing.</p>
+<p>You can also create an empty switch case:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">myvar</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4</span>
+	<span style="color:#66d9ef">switch</span> {
+	<span style="color:#66d9ef">case</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">myvar</span>:
+		println(<span style="color:#e6db74">&#34;value is one&#34;</span>)
+	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">myvar</span> &gt; <span style="color:#ae81ff">5</span>:
+		println(<span style="color:#e6db74">&#34;value is more then five&#34;</span>)
+}
+</code></pre></div><h2 id="arraysslice">
+  Arrays/Slice
+  <a class="anchor" href="#arraysslice">#</a>
+</h2>
+<p>In go, we have arrays and slices. You don&rsquo;t need to worry about the differences now, so let&rsquo;s pretend that they are the same.</p>
+<p>The notaion is:</p>
+<pre><code>[]type
+</code></pre>
+<p>Example:</p>
+<pre><code>[]string // string array
+[]int    // int array
+</code></pre>
+<h3 id="create">
+  Create
+  <a class="anchor" href="#create">#</a>
+</h3>
+<p>We can create a slice this ways:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">length</span>)
+
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">array</span> [<span style="color:#ae81ff">10</span>]<span style="color:#66d9ef">string</span>
+}
+</code></pre></div><p>In that case, we created a slice with 10 positions.</p>
+<p>We can specify the total capacity of the array, and the actual length of it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>
+    <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">capacity</span>)
+}
+</code></pre></div><p>We can also create a slice already with values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>}
+}
+</code></pre></div><h3 id="manipulate">
+  Manipulate
+  <a class="anchor" href="#manipulate">#</a>
+</h3>
+<p>We can manipulate the values using the index</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>}
+    println(<span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#ae81ff">9</span>
+    println(<span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e">// 9
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>We can select only part of the arrays</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">7</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>]) <span style="color:#75715e">// [5 8]
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">2</span>:<span style="color:#ae81ff">4</span>]
+    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">b</span>) <span style="color:#75715e">// [4 7]
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">b</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e">// 7
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="map">
+  Map
+  <a class="anchor" href="#map">#</a>
+</h2>
+<p>Maps as alike slices, but they does not have total capacity</p>
+<p>The notaion is:</p>
+<pre><code>map[keyType]valueType
+</code></pre>
+<p>Example:</p>
+<pre><code>map[int]string // map with int key, and string value
+map[int]int    // map with int key, and int value
+</code></pre>
+<h3 id="create-1">
+  Create
+  <a class="anchor" href="#create-1">#</a>
+</h3>
+<p>We can create a map like this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>)
+}
+</code></pre></div><p>We can also create a map already with values</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>{
+		<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#34;value1&#34;</span>,
+		<span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#34;value2&#34;</span>,
+	}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">m</span>)    <span style="color:#75715e">// map[1:value1 2:value2]
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e">// value1
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="manipulate-1">
+  Manipulate
+  <a class="anchor" href="#manipulate-1">#</a>
+</h3>
+<p>As slices, we can manipulate the map using the index</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>{
+		<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#34;value1&#34;</span>,
+	}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">m</span>)    <span style="color:#75715e">// map[1:value1]
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#75715e">// value1
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#e6db74">&#34;newValue&#34;</span>
+    <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">2</span>] = <span style="color:#e6db74">&#34;value&#34;</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">m</span>)    <span style="color:#75715e">// map[1:newValue 2:value]
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h2 id="channel">
+  Channel
+  <a class="anchor" href="#channel">#</a>
+</h2>
+<p>Channels are alike queues, they can store data, and deliver data.</p>
+<p>The notaion is:</p>
+<pre><code>chan type
+</code></pre>
+<p>Example:</p>
+<pre><code>chan string // channel of strings
+chan int    // channel of ints
+</code></pre>
+<h3 id="create-2">
+  Create
+  <a class="anchor" href="#create-2">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacity</span>)
+}
+</code></pre></div><h3 id="manipulate-2">
+  Manipulate
+  <a class="anchor" href="#manipulate-2">#</a>
+</h3>
+<p>We can add or remove data from channels with a special operation</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacity</span>)
+
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">3</span>
+
+	<span style="color:#a6e22e">v1</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>
+	<span style="color:#a6e22e">v2</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>
+	<span style="color:#a6e22e">v3</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>
+
+	println(<span style="color:#a6e22e">v1</span>) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span>	println(<span style="color:#a6e22e">v2</span>) <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>	println(<span style="color:#a6e22e">v3</span>) <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>If the channel is full, it will block the current thread until there is space to store</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacity</span>)
+
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">3</span> <span style="color:#75715e">// this will block the thread execution
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>We can also pass a second param to receive if the channel still working</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacity</span>)
+
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>
+
+    <span style="color:#a6e22e">v</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> {
+        println(<span style="color:#a6e22e">v</span>)
+    } <span style="color:#66d9ef">else</span> {
+        println(<span style="color:#e6db74">&#34;closed channel&#34;</span>)
+    }
+}
+</code></pre></div><h2 id="loops">
+  Loops
+  <a class="anchor" href="#loops">#</a>
+</h2>
+<p>Go suports only one command of loop, the for statment.</p>
+<h3 id="indexed">
+  Indexed
+  <a class="anchor" href="#indexed">#</a>
+</h3>
+<p>We have the for statement that executes a loop</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">5</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        println(<span style="color:#a6e22e">i</span>)
+    }
+}
+</code></pre></div><h3 id="infinite">
+  Infinite
+  <a class="anchor" href="#infinite">#</a>
+</h3>
+<p>We can create infinit loops.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>
+    <span style="color:#66d9ef">for</span> {
+        println(<span style="color:#a6e22e">i</span>)
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span> &gt; <span style="color:#ae81ff">5</span> {
+            <span style="color:#66d9ef">break</span>;
+        }
+        <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>
+    }
+}
+</code></pre></div><p>To interact with loops, we can use the commands: break, continue</p>
+<ul>
+<li>break: exists the loop</li>
+<li>continue: goes to the next iteration</li>
+</ul>
+<h3 id="iteration">
+  Iteration
+  <a class="anchor" href="#iteration">#</a>
+</h3>
+<p>We can also iterate through maps and slices/arrays.</p>
+<p>You will need to use the range command.</p>
+<h4 id="arraysslice-1">
+  Arrays/slice
+  <a class="anchor" href="#arraysslice-1">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">list</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;val1&#34;</span>, <span style="color:#e6db74">&#34;val2&#34;</span>}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;position %d has the value %s&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">v</span>)
+	}
+}
+</code></pre></div><h4 id="maps">
+  Maps
+  <a class="anchor" href="#maps">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>{
+		<span style="color:#ae81ff">1</span>: <span style="color:#e6db74">&#34;value1&#34;</span>,
+		<span style="color:#ae81ff">2</span>: <span style="color:#e6db74">&#34;value2&#34;</span>,
+	}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">list</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;key %d has the value %s&#34;</span>, <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span>)
+	}
+}
+</code></pre></div><h2 id="embedded-functions">
+  Embedded functions
+  <a class="anchor" href="#embedded-functions">#</a>
+</h2>
+<p>In go we have some native funcs to help us to work with go.</p>
+<h3 id="print">
+  print
+  <a class="anchor" href="#print">#</a>
+</h3>
+<p>To print in the console, we have the basic functions</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    print(<span style="color:#e6db74">&#34;someoutput&#34;</span>)
+    println(<span style="color:#e6db74">&#34;print and break line&#34;</span>)
+}
+</code></pre></div><h3 id="make">
+  make
+  <a class="anchor" href="#make">#</a>
+</h3>
+<p>To create arrays/slice, maps or channels, we can use the func &ldquo;make&rdquo;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4</span>
+    <span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">myArray</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">capacity</span>)
+
+    <span style="color:#a6e22e">myMap</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>)
+
+    <span style="color:#a6e22e">myChan</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+}
+</code></pre></div><h3 id="len">
+  len
+  <a class="anchor" href="#len">#</a>
+</h3>
+<p>We can check the length of channels, maps and arrays/slices using len()</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4</span>
+    <span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">myArray</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">capacity</span>)
+    println(len(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 4
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">myMap</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>)
+    println(len(<span style="color:#a6e22e">myMap</span>)) <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">capacityC</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+    <span style="color:#a6e22e">myChan</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacityC</span>)
+    <span style="color:#a6e22e">myChan</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span> <span style="color:#75715e">// add data to the channel
+</span><span style="color:#75715e"></span>    println(len(<span style="color:#a6e22e">myChan</span>)) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="cap">
+  cap
+  <a class="anchor" href="#cap">#</a>
+</h3>
+<p>We can check the total capacity of a channel or an array/slice using cap()</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">length</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">4</span>
+    <span style="color:#a6e22e">capacity</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+    <span style="color:#a6e22e">myArray</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">capacity</span>)
+    println(cap(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 10
+</span><span style="color:#75715e"></span>
+    <span style="color:#a6e22e">capacityC</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">5</span>
+    <span style="color:#a6e22e">myChan</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">capacityC</span>)
+    <span style="color:#a6e22e">myChan</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span> <span style="color:#75715e">// add data to the channel
+</span><span style="color:#75715e"></span>    println(cap(<span style="color:#a6e22e">myChan</span>)) <span style="color:#75715e">// 5
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="append">
+  append
+  <a class="anchor" href="#append">#</a>
+</h3>
+<p>We can append data to and array/slice using append()</p>
+<p>Append will expand the capacity of yout array if it does not have capacity to store the new value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">myArray</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+    println(len(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 0
+</span><span style="color:#75715e"></span>    println(cap(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span>    println(<span style="color:#e6db74">&#34;---&#34;</span>)
+
+    <span style="color:#a6e22e">myArray</span> = append(<span style="color:#a6e22e">myArray</span>, <span style="color:#e6db74">&#34;someString&#34;</span>)
+    println(len(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span>    println(cap(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span>    println(<span style="color:#e6db74">&#34;---&#34;</span>)
+
+    <span style="color:#a6e22e">myArray</span> = append(<span style="color:#a6e22e">myArray</span>, <span style="color:#e6db74">&#34;moreData&#34;</span>)
+    println(len(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>    println(cap(<span style="color:#a6e22e">myArray</span>)) <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="defer">
+  defer
+  <a class="anchor" href="#defer">#</a>
+</h3>
+<p>Defer is command that tells go to execute that function at the end of the current function, no matter what happens, ether a return or a panic.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">myStr</span> <span style="color:#66d9ef">struct</span> {
+        <span style="color:#a6e22e">Data</span> <span style="color:#66d9ef">string</span>
+    }
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+        <span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() {
+            println(<span style="color:#e6db74">&#34;main exited&#34;</span>)
+        }()
+
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">myStr</span>
+        println(<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">Data</span>)
+    }
+</code></pre></div><p>This will result in something like this:</p>
+<pre><code>...
+main exited
+panic: runtime error: invalid memory address or nil pointer dereference
+...
+</code></pre>
+<h3 id="new">
+  new
+  <a class="anchor" href="#new">#</a>
+</h3>
+<p>The function new creates a new pointer of the type passed as param with empty value (not nil)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">str</span> <span style="color:#f92672">:=</span> new(<span style="color:#66d9ef">string</span>)
+    println(<span style="color:#f92672">*</span><span style="color:#a6e22e">str</span>) <span style="color:#75715e">// &#34;&#34;
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="close">
+  close
+  <a class="anchor" href="#close">#</a>
+</h3>
+<p>The clonse function is used to close channels.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">1</span>)
+
+    <span style="color:#a6e22e">c</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">0</span>
+
+    <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>
+
+    close(<span style="color:#a6e22e">c</span>)
+}
+</code></pre></div><h3 id="others">
+  others
+  <a class="anchor" href="#others">#</a>
+</h3>
+<p>All the functions are in the builtin.go file.</p>
+<p>You can the all the others function in that file. Feel free to open the file and see the docs.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#functions">Functions</a>
+      <ul>
+        <li><a href="#function-name">Function Name</a></li>
+        <li><a href="#function-params">Function Params</a></li>
+        <li><a href="#function-returns">Function Returns</a></li>
+      </ul>
+    </li>
+    <li><a href="#variable-initialization">Variable Initialization</a></li>
+    <li><a href="#basic-types">Basic Types</a></li>
+    <li><a href="#constants">Constants</a></li>
+    <li><a href="#switch-case">Switch Case</a></li>
+    <li><a href="#arraysslice">Arrays/Slice</a>
+      <ul>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#manipulate">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#map">Map</a>
+      <ul>
+        <li><a href="#create-1">Create</a></li>
+        <li><a href="#manipulate-1">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#channel">Channel</a>
+      <ul>
+        <li><a href="#create-2">Create</a></li>
+        <li><a href="#manipulate-2">Manipulate</a></li>
+      </ul>
+    </li>
+    <li><a href="#loops">Loops</a>
+      <ul>
+        <li><a href="#indexed">Indexed</a></li>
+        <li><a href="#infinite">Infinite</a></li>
+        <li><a href="#iteration">Iteration</a></li>
+      </ul>
+    </li>
+    <li><a href="#embedded-functions">Embedded functions</a>
+      <ul>
+        <li><a href="#print">print</a></li>
+        <li><a href="#make">make</a></li>
+        <li><a href="#len">len</a></li>
+        <li><a href="#cap">cap</a></li>
+        <li><a href="#append">append</a></li>
+        <li><a href="#defer">defer</a></li>
+        <li><a href="#new">new</a></li>
+        <li><a href="#close">close</a></li>
+        <li><a href="#others">others</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

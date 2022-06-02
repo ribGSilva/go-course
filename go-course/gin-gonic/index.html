@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Gin Gonic #  Http server with Gin Gonic #  Go has a native library to handle http requests.
+net/http  I personally like to use the Gin Gonic and that is what I will use here.
+package main import ( &#34;fmt&#34; &#34;github.com/gin-gonic/gin&#34; &#34;net/http&#34; ) type user struct { Name string `json:&#34;name&#34;` } func main() { engine := gin.Default() engine.Handle(http.MethodPost, &#34;/user&#34;, createUser) engine.Handle(http.MethodGet, &#34;/user&#34;, getUser) if err := engine.Run(&#34;:8080&#34;); err !">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Gin Gonic" />
+<meta property="og:description" content="Gin Gonic #  Http server with Gin Gonic #  Go has a native library to handle http requests.
+net/http  I personally like to use the Gin Gonic and that is what I will use here.
+package main import ( &#34;fmt&#34; &#34;github.com/gin-gonic/gin&#34; &#34;net/http&#34; ) type user struct { Name string `json:&#34;name&#34;` } func main() { engine := gin.Default() engine.Handle(http.MethodPost, &#34;/user&#34;, createUser) engine.Handle(http.MethodGet, &#34;/user&#34;, getUser) if err := engine.Run(&#34;:8080&#34;); err !" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/go-course/gin-gonic/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Gin Gonic | GO course</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css" integrity="sha256-gsXb0jRHzuC0wqo&#43;0Izglh&#43;qQOH6Nw7uT4yfAuDUa18=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ca6d6280f26e57be9b01d11a935a30e8ec4ce6d85490963f06200c9c4668e375.js" integrity="sha256-ym1igPJuV76bAdEak1ow6OxM5thUkJY/BiAMnEZo43U=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>GO course</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/quickstart/" class="">Quickstart</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/hello-world/" class="">Hello world</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/basics/" class="">Basics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/json/" class="">JSON</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/gin-gonic/" class=" active">Gin Gonic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/database/" class="">Database</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/goroutines/" class="">Goroutines</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Gin Gonic</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#http-server-with-gin-gonic">Http server with Gin Gonic</a></li>
+    <li><a href="#handling-requests">Handling requests</a></li>
+    <li><a href="#group-handlers">Group handlers</a></li>
+    <li><a href="#run-the-server">Run the server</a></li>
+    <li><a href="#getting-data">Getting data</a></li>
+    <li><a href="#responding">Responding</a></li>
+    <li><a href="#middlewares">Middlewares</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="gin-gonic">
+  Gin Gonic
+  <a class="anchor" href="#gin-gonic">#</a>
+</h1>
+<h2 id="http-server-with-gin-gonic">
+  Http server with Gin Gonic
+  <a class="anchor" href="#http-server-with-gin-gonic">#</a>
+</h2>
+<p>Go has a native library to handle http requests.</p>
+<pre><code>net/http
+</code></pre>
+<p>I personally like to use the <a href="https://github.com/gin-gonic/gin">Gin Gonic</a> and that is what I will use here.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/gin-gonic/gin&#34;</span>
+	<span style="color:#e6db74">&#34;net/http&#34;</span>
+)
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">user</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;name&#34;`</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">engine</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Default</span>()
+
+	<span style="color:#a6e22e">engine</span>.<span style="color:#a6e22e">Handle</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">MethodPost</span>, <span style="color:#e6db74">&#34;/user&#34;</span>, <span style="color:#a6e22e">createUser</span>)
+	<span style="color:#a6e22e">engine</span>.<span style="color:#a6e22e">Handle</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">MethodGet</span>, <span style="color:#e6db74">&#34;/user&#34;</span>, <span style="color:#a6e22e">getUser</span>)
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">engine</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#e6db74">&#34;:8080&#34;</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;error with http server: %s&#34;</span>, <span style="color:#a6e22e">err</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">createUser</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Context</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">u</span> <span style="color:#a6e22e">user</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">ShouldBind</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">u</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusBadRequest</span>, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;invalid body: %s&#34;</span>, <span style="color:#a6e22e">err</span>))
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;new user: %+v \n&#34;</span>, <span style="color:#a6e22e">u</span>)
+		<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Status</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusCreated</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getUser</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Context</span>) {
+	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">user</span>{
+		<span style="color:#a6e22e">Name</span>: <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">DefaultQuery</span>(<span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;default name&#34;</span>),
+	}
+	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">JSON</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusCreated</span>, <span style="color:#a6e22e">u</span>)
+}
+
+</code></pre></div><p>In the code above, the first line in the main code, we are creating a new instance of the gin router.</p>
+<p>We are using a default router, that has a logging middleware and a default recovery middleware. You can use a gin.New() one, and configure the way you want.</p>
+<pre><code>engine := gin.New()
+</code></pre>
+<h2 id="handling-requests">
+  Handling requests
+  <a class="anchor" href="#handling-requests">#</a>
+</h2>
+<p>We can handle paths by doing</p>
+<pre><code>engine.Handle(http.MethodPost, &quot;/user&quot;, createUser)
+engine.Handle(http.MethodGet, &quot;/user&quot;, getUser)
+</code></pre>
+<p>createUser and getUser are funcs that follow int func type accepcted but the framework</p>
+<pre><code>type HandlerFunc func(*Context)
+</code></pre>
+<h2 id="group-handlers">
+  Group handlers
+  <a class="anchor" href="#group-handlers">#</a>
+</h2>
+<p>We can group handlers that uses the same base path</p>
+<pre><code>g := engine.Group(&quot;/user&quot;)
+{
+    g.POST(&quot;&quot;, createUser)
+    g.GET(&quot;&quot;, getUser)
+}
+</code></pre>
+<h2 id="run-the-server">
+  Run the server
+  <a class="anchor" href="#run-the-server">#</a>
+</h2>
+<p>To run the server, we can use a several dufferent ways. The simple way is just call the func Run().</p>
+<pre><code>err := engine.Run(&quot;:8080&quot;)
+</code></pre>
+<p>It receives the address to run the server, you can change the port as you want.</p>
+<p>The return is an error, in case of something goes wrong.</p>
+<h2 id="getting-data">
+  Getting data
+  <a class="anchor" href="#getting-data">#</a>
+</h2>
+<p>As in json package, we can parse a body into a struct using some funcs from the framework. We are receiving a lot of data into the *gin.Context param.</p>
+<p>In the example, we are parsing the body request into an user struct, and if it goes wrong, it will return an error.</p>
+<pre><code>err := c.ShouldBind(&amp;u)
+</code></pre>
+<p>We have a some variants of the method, check the docs to see all the trics.</p>
+<p>We can also get params using to her a query param with default value</p>
+<pre><code>q := c.DefaultQuery(&quot;queryName&quot;, &quot;default value&quot;)
+</code></pre>
+<p>Or just to get the value (returns empty if did not receive any value)</p>
+<pre><code>q := c.Query(&quot;queryName&quot;)
+</code></pre>
+<p>If we have a lot of query params, we can use this and it will return all your query as a plain struct</p>
+<pre><code>q := c.BindQuery(&amp;q)
+</code></pre>
+<h2 id="responding">
+  Responding
+  <a class="anchor" href="#responding">#</a>
+</h2>
+<p>To return a response of the request, we don&rsquo;t have a return for the method. We use the *gin.Context to do that. (&ldquo;u&rdquo; is a struct)</p>
+<p>To return just a status:</p>
+<pre><code>c.Status(http.StatusCreated)
+</code></pre>
+<p>Return a json:</p>
+<pre><code>c.JSON(http.StatusCreated, u)
+</code></pre>
+<p>Return a plain text:</p>
+<pre><code>c.String(http.StatusCreated, &quot;text&quot;)
+</code></pre>
+<p>You can also do that manually:</p>
+<pre><code>_, err := c.Writer.Write([]byte(&quot;my response&quot;))
+c.Writer.Flush()
+</code></pre>
+<h2 id="middlewares">
+  Middlewares
+  <a class="anchor" href="#middlewares">#</a>
+</h2>
+<p>We can use middlewares creating a gin.HandlerFunc</p>
+<pre><code>func MyMiddleware(c *gin.Context) {
+    fmt.Println(&quot;before&quot;)
+
+    //calls next func
+    c.Next()
+
+    fmt.Println(&quot;after&quot;)
+}
+</code></pre>
+<p>And add it to the app, to a group or just to a specific endpoint</p>
+<pre><code>engine := gin.Default()
+//all the endpoints
+engine.Use(MyMiddleware)
+
+g := engine.Group(&quot;/user&quot;)
+{
+    //to a group
+    g.Use(MyMiddleware)
+    g.POST(&quot;&quot;, createUser)
+    g.GET(&quot;&quot;, getUser)
+}
+
+//to only one
+engine.Handle(http.MethodDelete, &quot;/user&quot;, MyMiddleware, deleteUser)</code></pre>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#http-server-with-gin-gonic">Http server with Gin Gonic</a></li>
+    <li><a href="#handling-requests">Handling requests</a></li>
+    <li><a href="#group-handlers">Group handlers</a></li>
+    <li><a href="#run-the-server">Run the server</a></li>
+    <li><a href="#getting-data">Getting data</a></li>
+    <li><a href="#responding">Responding</a></li>
+    <li><a href="#middlewares">Middlewares</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

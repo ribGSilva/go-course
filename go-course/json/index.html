@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JSON #  Work With Json #  To handle json, go has a native librabry for that.
+encoding/json  It is really easy to use it.
+Check the example below.
+package main import ( &#34;encoding/json&#34; &#34;fmt&#34; ) const myJson = `{ &#34;name&#34;: &#34;my name&#34;, &#34;age&#34;: 15, &#34;alive&#34;: true, &#34;extras&#34;: &#34;extra infos&#34;, &#34;privateField&#34;: &#34;using a private field&#34;, &#34;omitted&#34;: &#34;field omitted if empty&#34; }` type user struct { Name string `json:&#34;name&#34;` Age int `json:&#34;age&#34;` Alive bool `json:&#34;alive&#34;` DateOfBirth string `json:&#34;dob&#34;` privateField string `json:&#34;privateField&#34;` Omitted string `json:&#34;omitted,omitempty&#34;` } func main() { var u user if err := json.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="JSON" />
+<meta property="og:description" content="JSON #  Work With Json #  To handle json, go has a native librabry for that.
+encoding/json  It is really easy to use it.
+Check the example below.
+package main import ( &#34;encoding/json&#34; &#34;fmt&#34; ) const myJson = `{ &#34;name&#34;: &#34;my name&#34;, &#34;age&#34;: 15, &#34;alive&#34;: true, &#34;extras&#34;: &#34;extra infos&#34;, &#34;privateField&#34;: &#34;using a private field&#34;, &#34;omitted&#34;: &#34;field omitted if empty&#34; }` type user struct { Name string `json:&#34;name&#34;` Age int `json:&#34;age&#34;` Alive bool `json:&#34;alive&#34;` DateOfBirth string `json:&#34;dob&#34;` privateField string `json:&#34;privateField&#34;` Omitted string `json:&#34;omitted,omitempty&#34;` } func main() { var u user if err := json." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/go-course/json/" /><meta property="article:section" content="docs" />
+
+
+
+<title>JSON | GO course</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.82c5dbd23447cee0b4c2aa3ed08ce0961faa40e1fa370eee4f8c9f02e0d46b5f.css" integrity="sha256-gsXb0jRHzuC0wqo&#43;0Izglh&#43;qQOH6Nw7uT4yfAuDUa18=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.ca6d6280f26e57be9b01d11a935a30e8ec4ce6d85490963f06200c9c4668e375.js" integrity="sha256-ym1igPJuV76bAdEak1ow6OxM5thUkJY/BiAMnEZo43U=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>GO course</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/quickstart/" class="">Quickstart</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/hello-world/" class="">Hello world</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/basics/" class="">Basics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/json/" class=" active">JSON</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/gin-gonic/" class="">Gin Gonic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/database/" class="">Database</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/go-course/goroutines/" class="">Goroutines</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>JSON</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#work-with-json">Work With Json</a></li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="json">
+  JSON
+  <a class="anchor" href="#json">#</a>
+</h1>
+<h2 id="work-with-json">
+  Work With Json
+  <a class="anchor" href="#work-with-json">#</a>
+</h2>
+<p>To handle json, go has a native librabry for that.</p>
+<pre><code>encoding/json
+</code></pre>
+<p>It is really easy to use it.</p>
+<p>Check the example below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myJson</span> = <span style="color:#e6db74">`{
+</span><span style="color:#e6db74">	&#34;name&#34;: &#34;my name&#34;,
+</span><span style="color:#e6db74">	&#34;age&#34;: 15,
+</span><span style="color:#e6db74">	&#34;alive&#34;: true,
+</span><span style="color:#e6db74">	&#34;extras&#34;: &#34;extra infos&#34;,
+</span><span style="color:#e6db74">	&#34;privateField&#34;: &#34;using a private field&#34;,
+</span><span style="color:#e6db74">    &#34;omitted&#34;: &#34;field omitted if empty&#34;
+</span><span style="color:#e6db74">}`</span>
+
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">user</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Name</span>         <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;name&#34;`</span>
+	<span style="color:#a6e22e">Age</span>          <span style="color:#66d9ef">int</span>    <span style="color:#e6db74">`json:&#34;age&#34;`</span>
+	<span style="color:#a6e22e">Alive</span>        <span style="color:#66d9ef">bool</span>   <span style="color:#e6db74">`json:&#34;alive&#34;`</span>
+	<span style="color:#a6e22e">DateOfBirth</span>  <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;dob&#34;`</span>
+	<span style="color:#a6e22e">privateField</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;privateField&#34;`</span>
+	<span style="color:#a6e22e">Omitted</span>      <span style="color:#66d9ef">string</span> <span style="color:#e6db74">`json:&#34;omitted,omitempty&#34;`</span>
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">u</span> <span style="color:#a6e22e">user</span>
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Unmarshal</span>([]byte(<span style="color:#a6e22e">myJson</span>), <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">u</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;failure to parse json to user: %s \n&#34;</span>, <span style="color:#a6e22e">err</span>)
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;my user is: %+v \n&#34;</span>, <span style="color:#a6e22e">u</span>)
+	}
+
+	<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">DateOfBirth</span> = <span style="color:#e6db74">&#34;2000/01/01&#34;</span>
+	<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">privateField</span> = <span style="color:#e6db74">&#34;setting private field&#34;</span>
+	<span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">Omitted</span> = <span style="color:#e6db74">&#34;&#34;</span>
+
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">bytes</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">Marshal</span>(<span style="color:#a6e22e">u</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;failure to parse user to json: %s \n&#34;</span>, <span style="color:#a6e22e">err</span>)
+	} <span style="color:#66d9ef">else</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;my json is: %s \n&#34;</span>, string(<span style="color:#a6e22e">bytes</span>))
+	}
+}
+
+</code></pre></div><p>Running this code, we have this output:</p>
+<pre><code>my user is: {Name:my name Age:15 Alive:true DateOfBirth: privateField: Omitted:field omitted if empty} 
+my json is: {&quot;name&quot;:&quot;my name&quot;,&quot;age&quot;:15,&quot;alive&quot;:true,&quot;dob&quot;:&quot;2000/01/01&quot;} 
+</code></pre>
+<p>As we can see, we have some particular behaviours.</p>
+<ul>
+<li>The Unmarshal method receives a ponter to the object to be filled</li>
+<li>It doesn&rsquo;t break if not all fields are mapped in json nether in the struct (you can change that if you want)</li>
+<li>Private fields are not mapped</li>
+<li>You can remove fields if empty using the tag &ldquo;omitempty&rdquo;</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#work-with-json">Work With Json</a></li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
